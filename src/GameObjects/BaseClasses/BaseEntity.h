@@ -13,4 +13,14 @@ private:
 
 	int health;
 	int damage;		//Damage dealt to other body on collision
+
+public:
+	BaseEntity();
+	~BaseEntity();
+	void Move();
+	void CheckCollision(BaseEntity entity);
+	void RecieveDamage(int damage);
+	void Draw();
+
+	int GetHealth();
 };
