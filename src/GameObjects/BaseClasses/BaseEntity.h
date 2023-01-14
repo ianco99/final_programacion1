@@ -22,7 +22,8 @@ public:
 	void Move();
 	void CheckCollision(BaseEntity entity);
 	void RecieveDamage(int damage);
-	void Draw();
+	virtual void Draw();
+	virtual void Erase();
 
 	int GetHealth();
 };

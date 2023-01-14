@@ -11,5 +11,8 @@ public:
 	Player(Vector2 body, Vector2 startPosition, Vector2 velocity, Color color, int health, int damage);
 	~Player();
 
+
+	void Draw() override;
+	void Erase() override;
 	int GetScore();
 };
