@@ -9,13 +9,15 @@ private:
 
 	Vector2 position;
 	Vector2 direction;
-	int velocity;	//Windows console works with entire pixels, instead of positions with floating point values
+	Vector2 velocity;	//Windows console works with entire pixels, instead of positions with floating point values
+
+	Color color;
 
 	int health;
 	int damage;		//Damage dealt to other body on collision
 
 public:
-	BaseEntity();
+	BaseEntity(Vector2 body, Vector2 startPosition, Vector2 velocity,Color color,int health, int damage);
 	~BaseEntity();
 	void Move();
 	void CheckCollision(BaseEntity entity);
