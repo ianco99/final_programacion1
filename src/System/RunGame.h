@@ -18,6 +18,8 @@ struct GameConfigs
 class RunGame
 {
 private:
+
+
 	Player* player;
 	//Asteroid asteroids[GameConfigs.maxAsteroids];
 
@@ -26,6 +28,8 @@ public:
 	RunGame();
 	~RunGame();
 
+	void Start();
+	
 	void Update();
 	void CheckInput();
 	void MoveEntities();
