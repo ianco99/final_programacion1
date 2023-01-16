@@ -1,23 +1,15 @@
 #pragma once
 #include "BaseClasses/BaseEntity.h"
 
-class Bullet : BaseEntity
+class Asteroid : BaseEntity
 {
 private:
 
 
 public:
-	Bullet();
-	~Bullet();
-	
+	Asteroid();
+	~Asteroid();
+
 	void Draw() override;
 	void Erase() override;
 };
-
-//Bullet::Bullet()
-//{
-//}
-//
-//Bullet::~Bullet()
-//{
-//}
