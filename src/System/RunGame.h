@@ -19,7 +19,6 @@ class RunGame
 {
 private:
 
-
 	Player* player;
 	//Asteroid asteroids[GameConfigs.maxAsteroids];
 
@@ -36,11 +35,3 @@ public:
 	void CheckCollisions();
 
 };
-
-//RunGame::RunGame()
-//{
-//}
-//
-//RunGame::~RunGame()
-//{
-//}

@@ -25,10 +25,10 @@ void BaseEntity::Move()
 
 }
 
-void BaseEntity::CheckCollision(BaseEntity entity)
-{
-
-}
+//void BaseEntity::CheckCollision(BaseEntity entity)
+//{
+//
+//}
 
 void BaseEntity::RecieveDamage(int damage)
 {
