@@ -2,6 +2,8 @@
 #include "GameObjects/Player.h"
 #include "GameObjects/Asteroid.h"
 
+#include "AwesomeLibrary.h"
+
 enum GameStates
 {
 	Playing,
