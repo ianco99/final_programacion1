@@ -21,6 +21,7 @@ class RunGame
 {
 private:
 
+	GameStates currentState;
 	Player* player;
 	//Asteroid asteroids[GameConfigs.maxAsteroids];
 
@@ -30,7 +31,8 @@ public:
 	~RunGame();
 
 	void Start();
-	
+	void Init();
+
 	void Update();
 	void CheckInput();
 	void MoveEntities();

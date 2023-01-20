@@ -18,11 +18,30 @@ void RunGame::Start()
 	cout << "Press space to start game" << endl;
 	goToCoordinates(10, 11);
 	cout << "Press 'q' to start game" << endl;
+
+	if (_getch() == ' ')
+	{
+		currentState = GameStates::Playing;
+
+		Init();
+
+		while (currentState == GameStates::Playing)
+		{
+			Update();
+		}
+	}
+}
+
+void RunGame::Init()
+{
+
 }
 
 void RunGame::Update()
 {
-
+	CheckInput();
+	MoveEntities();
+	CheckCollisions();
 }
 
 void RunGame::CheckInput()
