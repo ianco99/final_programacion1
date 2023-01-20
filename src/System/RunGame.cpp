@@ -29,12 +29,14 @@ void RunGame::Start()
 		{
 			Update();
 		}
+
+		//EndGame();
 	}
 }
 
 void RunGame::Init()
 {
-
+	//player = new Player();													
 }
 
 void RunGame::Update()
