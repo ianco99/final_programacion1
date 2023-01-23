@@ -36,7 +36,8 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	//player = new Player();													
+	this->player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, Color::GREEN, 3, 1);
+
 }
 
 void RunGame::Update()
