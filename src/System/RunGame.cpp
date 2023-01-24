@@ -63,7 +63,28 @@ void RunGame::Update()
 
 void RunGame::CheckInput()
 {
+	int input = _getch_nolock();
 
+	switch (input)
+	{
+	case 87:
+	case 119:
+		
+		break;
+
+	case 65:
+	case 97:
+		break;
+	case 83:
+	case 115:
+
+		break;
+	case 68:
+	case 100:
+		break;
+	default:
+		break;
+	}
 }
 
 void RunGame::MoveEntities()
