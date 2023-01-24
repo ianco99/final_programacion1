@@ -14,7 +14,7 @@ RunGame::~RunGame()
 
 void RunGame::Start()
 {
-	goToCoordinates(10,10);
+	goToCoordinates(10, 10);
 	cout << "Press space to start game" << endl;
 	goToCoordinates(10, 11);
 	cout << "Press 'q' to start game" << endl;
@@ -36,18 +36,23 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	this->player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, Color::GREEN, 3, 1);
+	this->player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 
 	player->InitBullets();
 
 	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
 	{
-		this->asteroids[i] = new Asteroid();
+		this->asteroids[i] = new Asteroid({ 1,1 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight / 8 }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1);
 	}
+
+	cout << '\n' << "Press space to continue" << endl;
+
+	_getch();
 }
 
 void RunGame::Update()
 {
+	system("CLS");
 	CheckInput();
 	MoveEntities();
 	CheckCollisions();

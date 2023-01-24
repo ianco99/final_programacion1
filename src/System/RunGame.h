@@ -13,7 +13,7 @@ enum class GameStates
 
 static struct GameConfigs
 {
-	static GameConfigs instance;
+public:
 	static const int maxAsteroids = 20;
 	static const int maxBullets = 10;
 	static const int screenWidth = 60;
@@ -22,11 +22,12 @@ static struct GameConfigs
 
 class RunGame
 {
-private:
 
-	GameStates currentState;
+private:
+	Asteroid* asteroids[20];
 	Player* player;
-	Asteroid* asteroids[GameConfigs::maxAsteroids];
+	GameStates currentState;
+	//Asteroid* asteroids[GameConfigs::maxAsteroids];
 
 
 public:
