@@ -2,12 +2,12 @@
 
 Bullet::Bullet(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, velocity, color, health, damage)
 {
-	cout << "Created player object" << endl;
+	cout << "Created bullet object" << endl;
 }
 
 Bullet::~Bullet()
 {
-	cout << "Destroyed player object" << endl;
+	cout << "Destroyed bullet object" << endl;
 }
 
 void Bullet::Draw()

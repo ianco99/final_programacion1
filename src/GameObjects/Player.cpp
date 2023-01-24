@@ -22,12 +22,14 @@ void Player::InitBullets()
 
 void Player::Draw()
 {
-
+	goToCoordinates(this->position.x, this->position.y);
+	cout << "X";
 }
 
 void Player::Erase()
 {
-
+	goToCoordinates(this->position.x, this->position.y);
+	cout << " ";
 }
 
 int Player::GetScore()

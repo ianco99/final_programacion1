@@ -14,6 +14,8 @@ RunGame::~RunGame()
 
 void RunGame::Start()
 {
+	hideCursor();
+
 	goToCoordinates(10, 10);
 	cout << "Press space to start game" << endl;
 	goToCoordinates(10, 11);
@@ -30,7 +32,7 @@ void RunGame::Start()
 			Update();
 		}
 
-		//EndGame();
+		this->EndGame();
 	}
 }
 
@@ -48,11 +50,11 @@ void RunGame::Init()
 	cout << '\n' << "Press space to continue" << endl;
 
 	_getch();
+	system("CLS");
 }
 
 void RunGame::Update()
 {
-	system("CLS");
 	CheckInput();
 	MoveEntities();
 	CheckCollisions();
@@ -76,5 +78,16 @@ void RunGame::CheckCollisions()
 
 void RunGame::DrawEntities()
 {
+	this->player->Draw();
 
+	for (int i = 0; i < 20; i++)
+	{
+		this->asteroids[i]->Draw();
+	}
+}
+
+void RunGame::EndGame()
+{
+	delete this->player;
+	delete this->asteroids;
 }

@@ -42,4 +42,6 @@ public:
 	void MoveEntities();
 	void CheckCollisions();
 	void DrawEntities();
+
+	void EndGame();
 };
