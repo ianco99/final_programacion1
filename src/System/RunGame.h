@@ -25,7 +25,7 @@ private:
 
 	GameStates currentState;
 	Player* player;
-	//Asteroid asteroids[GameConfigs.maxAsteroids];
+	Asteroid* asteroids[GameConfigs::maxAsteroids];
 
 
 public:
@@ -39,5 +39,5 @@ public:
 	void CheckInput();
 	void MoveEntities();
 	void CheckCollisions();
-
+	void DrawEntities();
 };

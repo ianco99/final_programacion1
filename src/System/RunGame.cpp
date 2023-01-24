@@ -38,6 +38,10 @@ void RunGame::Init()
 {
 	this->player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, Color::GREEN, 3, 1);
 
+	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
+	{
+		this->asteroids[i] = new Asteroid();
+	}
 }
 
 void RunGame::Update()
@@ -58,6 +62,11 @@ void RunGame::MoveEntities()
 }
 
 void RunGame::CheckCollisions()
+{
+
+}
+
+void RunGame::DrawEntities()
 {
 
 }
