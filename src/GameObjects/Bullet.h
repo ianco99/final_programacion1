@@ -7,7 +7,7 @@ private:
 
 
 public:
-	Bullet();
+	Bullet(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage);
 	~Bullet();
 	
 	void Draw() override;

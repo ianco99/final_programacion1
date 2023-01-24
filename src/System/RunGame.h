@@ -15,6 +15,7 @@ static struct GameConfigs
 {
 	static GameConfigs instance;
 	static const int maxAsteroids = 20;
+	static const int maxBullets = 10;
 	static const int screenWidth = 60;
 	static const int screenHeight = 26;
 };
