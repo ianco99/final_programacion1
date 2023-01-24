@@ -15,6 +15,9 @@ public:
 
 	void InitBullets();
 
+	void ChangeDirection(Vector2 newDirection);
+	void Move();
+
 	void Draw() override;
 	void Erase() override;
 	int GetScore();

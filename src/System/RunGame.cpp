@@ -67,20 +67,26 @@ void RunGame::CheckInput()
 
 	switch (input)
 	{
-	case 87:
+	case 87://W
 	case 119:
-		
+		this->player->Erase();
+		this->player->ChangeDirection({ 0,-1 });
 		break;
 
-	case 65:
+	case 65://A
 	case 97:
+		this->player->Erase();
+		this->player->ChangeDirection({ -1,0 });
 		break;
-	case 83:
+	case 83://S
 	case 115:
-
+		this->player->Erase();
+		this->player->ChangeDirection({ 0,1 });
 		break;
-	case 68:
+	case 68://D
 	case 100:
+		this->player->Erase();
+		this->player->ChangeDirection({ 1,0 });
 		break;
 	default:
 		break;
@@ -89,7 +95,7 @@ void RunGame::CheckInput()
 
 void RunGame::MoveEntities()
 {
-
+	player->Move();
 }
 
 void RunGame::CheckCollisions()

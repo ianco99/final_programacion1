@@ -20,6 +20,17 @@ void Player::InitBullets()
 	}
 }
 
+void Player::ChangeDirection(Vector2 newDirection)
+{
+	this->direction = newDirection;
+}
+
+void Player::Move()
+{
+	this->position.x += this->direction.x;
+	this->position.y += this->direction.y;
+}
+
 void Player::Draw()
 {
 	goToCoordinates(this->position.x, this->position.y);
