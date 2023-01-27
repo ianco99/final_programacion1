@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "GameObjects/Player.h"
 #include "GameObjects/Asteroid.h"
 
@@ -24,9 +25,10 @@ class RunGame
 {
 
 private:
-	Asteroid* asteroids[20];
+	vector<BaseEntity*> entities;
 	Player* player;
 	GameStates currentState;
+	//Asteroid* asteroids[20];
 	//Asteroid* asteroids[GameConfigs::maxAsteroids];
 
 

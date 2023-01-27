@@ -38,16 +38,15 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	this->player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
-
+	player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
 	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
 	{
-		this->asteroids[i] = new Asteroid({ 1,1 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight / 8 }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1);
+		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight / 8 }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1));
 	}
 
-	cout << '\n' << "Press space to continue" << endl;
+	cout << '\n' << "Press anything to continue" << endl;
 
 	_getch();
 	system("CLS");
@@ -110,12 +109,16 @@ void RunGame::DrawEntities()
 
 	for (int i = 0; i < 20; i++)
 	{
-		this->asteroids[i]->Draw();
+		this->entities[i]->Draw();
 	}
 }
 
 void RunGame::EndGame()
 {
 	delete this->player;
-	delete this->asteroids;
+	for (int i = 0; i < entities.size(); i++)
+	{
+		delete entities[i];
+	}
+	entities.clear();
 }

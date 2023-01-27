@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseClasses/BaseEntity.h"
 
-class Asteroid : BaseEntity
+class Asteroid : public BaseEntity
 {
 private:
 

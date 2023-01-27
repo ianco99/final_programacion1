@@ -3,7 +3,7 @@
 
 #include "Bullet.h"
 
-class Player : BaseEntity
+class Player : public BaseEntity
 {
 private:
 	Bullet* bullets[10];
