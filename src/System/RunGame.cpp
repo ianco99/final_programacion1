@@ -89,6 +89,7 @@ void RunGame::CheckInput()
 		this->player->ChangeDirection({ 1,0 });
 		break;
 	default:
+		this->player->ChangeDirection({ 0,0 });
 		break;
 	}
 }
