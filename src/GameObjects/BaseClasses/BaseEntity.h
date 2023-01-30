@@ -20,7 +20,7 @@ public:
 	BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction,Vector2 velocity,Color color,int health, int damage);
 	~BaseEntity();
 	void Move();
-	void CheckCollision(BaseEntity entity);
+	void CheckCollision(BaseEntity* entity);
 	void RecieveDamage(int damage);
 	virtual void Draw() = 0;
 	virtual void Erase() = 0;

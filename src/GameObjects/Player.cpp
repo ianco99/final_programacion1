@@ -34,13 +34,23 @@ void Player::Move()
 void Player::Draw()
 {
 	goToCoordinates(this->position.x, this->position.y);
-	cout << "X";
+	cout << "  " << (char)30 << "  ";
+	goToCoordinates(this->position.x, this->position.y+1);
+	cout << " " << (char)40 << (char)206 << (char)41 << " ";
+	goToCoordinates(this->position.x, this->position.y + 2);
+	cout << (char)30 << (char)188 << " " << (char)200 << (char)30;
 }
 
 void Player::Erase()
 {
-	goToCoordinates(this->position.x, this->position.y);
-	cout << " ";
+	for (int i = 0; i < body.y; i++)
+	{
+		goToCoordinates(this->position.x, this->position.y + i);
+		for (int j = 0; j < body.x; j++)
+		{
+			cout << " ";
+		}
+	}
 }
 
 int Player::GetScore()

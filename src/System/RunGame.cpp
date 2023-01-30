@@ -38,7 +38,7 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	player = new Player({ 3,3 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
+	player = new Player({ 5,5 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
 	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
@@ -100,7 +100,10 @@ void RunGame::MoveEntities()
 
 void RunGame::CheckCollisions()
 {
-
+	for (int i = 0; i < entities.size(); i++)
+	{
+		//entities[i]->CheckCollision(player);
+	}
 }
 
 void RunGame::DrawEntities()
