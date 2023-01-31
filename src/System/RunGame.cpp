@@ -90,6 +90,11 @@ void RunGame::CheckInput()
 	default:
 		this->player->ChangeDirection({ 0,0 });
 		break;
+	case 69:
+		this->player->ChangeDirection({ 0,0 });
+
+		this->player->ShootBullet();
+		break;
 	}
 }
 

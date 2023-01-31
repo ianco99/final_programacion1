@@ -14,6 +14,7 @@ public:
 	~Player();
 
 	void InitBullets();
+	void ShootBullet();
 
 	void ChangeDirection(Vector2 newDirection);
 	void Move();
@@ -21,4 +22,7 @@ public:
 	void Draw() override;
 	void Erase() override;
 	int GetScore();
+
+	Vector2 GetBody();
+	Vector2 GetPosition();
 };
