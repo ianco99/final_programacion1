@@ -12,6 +12,8 @@ public:
 	
 	void StartBullet(Vector2 bulletPos, Vector2 bulletDir);
 
+	void Move();
+
 	void Draw() override;
 	void Erase() override;
 

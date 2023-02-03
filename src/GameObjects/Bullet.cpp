@@ -18,6 +18,15 @@ void Bullet::StartBullet(Vector2 bulletPos, Vector2 bulletDir)
 	direction = bulletDir;
 }
 
+void Bullet::Move()
+{
+	goToCoordinates(position.x, position.y);
+	cout << ' ';
+
+	this->position.x += this->direction.x;
+	this->position.y += this->direction.y;
+}
+
 void Bullet::Draw()
 {
 	goToCoordinates(position.x, position.y);

@@ -27,7 +27,7 @@ void Player::ShootBullet()
 	{
 		if (!bullets[i]->GetAlive())
 		{
-			bullets[i]->StartBullet({ position.x + body.x / 2,position.y}, { 0,1 });
+			bullets[i]->StartBullet({ position.x + body.x / 2,position.y}, { 0,-1 });
 			break;
 		}
 	}
@@ -42,6 +42,12 @@ void Player::Move()
 {
 	this->position.x += this->direction.x;
 	this->position.y += this->direction.y;
+
+	for (int i = 0; i < GameConfigs::maxBullets; i++)
+	{
+		if (bullets[i]->GetAlive())
+			bullets[i]->Move();
+	}
 }
 
 void Player::Draw()
