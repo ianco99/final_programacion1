@@ -39,3 +39,13 @@ int BaseEntity::GetHealth()
 {
 	return this->health;
 }
+
+int BaseEntity::GetDamage()
+{
+	return this->damage;
+}
+
+Vector2 BaseEntity::GetPosition()
+{
+	return this->position;
+}

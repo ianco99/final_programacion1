@@ -19,10 +19,13 @@ public:
 	void ChangeDirection(Vector2 newDirection);
 	void Move();
 
+	bool CheckCollision(BaseEntity* entity) override;
+
 	void Draw() override;
 	void Erase() override;
 	int GetScore();
 
+	Bullet* GetBullets(int index);
 	Vector2 GetBody();
 	Vector2 GetPosition();
 };

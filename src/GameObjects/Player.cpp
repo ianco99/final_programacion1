@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "System/RunGame.h"
 
 Player::Player(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, velocity, color, health, damage)
@@ -50,14 +50,32 @@ void Player::Move()
 	}
 }
 
+bool Player::CheckCollision(BaseEntity* entity)
+{
+	if (entity->GetPosition().x == this->position.x)
+		if (entity->GetPosition().y == this->position.y)
+			return true;
+	return false;
+
+}
+
 void Player::Draw()
 {
-	goToCoordinates(this->position.x, this->position.y);
-	cout << "  " << (char)30 << "  ";
+	//Center ship
+	goToCoordinates(this->position.x-1, this->position.y);
+	cout << "[" << (char)204 << "]" << (char)205 << (char)205 << (char)16;
+
+	//Left wings
+	goToCoordinates(this->position.x, this->position.y - 1);
+	cout << (char)254 << (char)175;
+	goToCoordinates(this->position.x-2, this->position.y - 2);
+	cout << (char)205 << (char)205 << (char)187;
+
+	//Right wings
 	goToCoordinates(this->position.x, this->position.y + 1);
-	cout << " " << (char)40 << (char)206 << (char)41 << " ";
-	goToCoordinates(this->position.x, this->position.y + 2);
-	cout << (char)30 << (char)188 << " " << (char)200 << (char)30;
+	cout << (char)254 << (char)175;
+	goToCoordinates(this->position.x - 2, this->position.y + 2);
+	cout << (char)205 << (char)205 << (char)188;
 
 	for (int i = 0; i < GameConfigs::maxBullets; i++)
 	{
@@ -70,14 +88,21 @@ void Player::Draw()
 
 void Player::Erase()
 {
-	for (int i = 0; i < body.y; i++)
-	{
-		goToCoordinates(this->position.x, this->position.y + i);
-		for (int j = 0; j < body.x; j++)
-		{
-			cout << " ";
-		}
-	}
+	//Center ship
+	goToCoordinates(this->position.x - 1, this->position.y);
+	cout << " " << ' ' << " " << ' ' << ' ' << ' ';
+
+	//Left wings
+	goToCoordinates(this->position.x, this->position.y - 1);
+	cout << ' ' << ' ';
+	goToCoordinates(this->position.x - 2, this->position.y - 2);
+	cout << ' ' << ' ' << ' ';
+
+	//Right wings
+	goToCoordinates(this->position.x, this->position.y + 1);
+	cout << ' ' << ' ';
+	goToCoordinates(this->position.x - 2, this->position.y + 2);
+	cout << ' ' << ' ' << ' ';
 }
 
 int Player::GetScore()
@@ -85,12 +110,12 @@ int Player::GetScore()
 	return 0;
 }
 
+Bullet* Player::GetBullets(int index)
+{
+	return this->bullets[index];
+}
+
 Vector2 Player::GetBody()
 {
 	return this->body;
-}
-
-Vector2 Player::GetPosition()
-{
-	return this->position;
 }

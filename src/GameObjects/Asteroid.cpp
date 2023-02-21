@@ -10,6 +10,15 @@ Asteroid::~Asteroid()
 	cout << "Destroyed asteroid object" << endl;
 }
 
+bool Asteroid::CheckCollision(BaseEntity* entity)
+{
+	if (entity->GetPosition().x == this->position.x)
+		if (entity->GetPosition().y == this->position.y)
+			return true;
+	return false;
+
+}
+
 void Asteroid::Draw()
 {
 	goToCoordinates(this->position.x, this->position.y);

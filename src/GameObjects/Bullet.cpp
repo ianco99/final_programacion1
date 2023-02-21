@@ -27,6 +27,19 @@ void Bullet::Move()
 	this->position.y += this->direction.y;
 }
 
+bool Bullet::CheckCollision(BaseEntity* entity)
+{
+	if (entity->GetPosition().x == this->position.x)
+		if (entity->GetPosition().y == this->position.y)
+		{
+			cout << "irinishe";
+			return true;
+		}
+	
+	return false;
+
+}
+
 void Bullet::Draw()
 {
 	goToCoordinates(position.x, position.y);

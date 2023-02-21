@@ -38,13 +38,13 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	player = new Player({ 5,5 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
+	player = new Player({ 5,5 }, { 4, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
-	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
-	{
+	/*for (int i = 0; i < GameConfigs::maxAsteroids; i++)
+	{*/
 		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight / 8 }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1));
-	}
+	//}
 
 	cout << '\n' << "Press anything to continue" << endl;
 
@@ -107,7 +107,19 @@ void RunGame::CheckCollisions()
 {
 	for (int i = 0; i < entities.size(); i++)
 	{
-		//entities[i]->CheckCollision(player);
+		for (int j = 0; j < GameConfigs::maxBullets; j++)
+		{
+			if (i != j)
+			{
+				if (entities[i]->CheckCollision(player->GetBullets(j)))
+				{
+					entities[i]->RecieveDamage(entities[j]->GetDamage());
+					entities[j]->RecieveDamage(entities[i]->GetDamage());
+				}
+
+			}
+
+		}
 	}
 }
 
@@ -115,7 +127,7 @@ void RunGame::DrawEntities()
 {
 	this->player->Draw();
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < entities.size(); i++)
 	{
 		this->entities[i]->Draw();
 	}
