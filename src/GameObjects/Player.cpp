@@ -117,10 +117,10 @@ void Player::Draw()
 
 void Player::Erase()
 {
-	for (int i = 0; i < body.y; i++)
+	for (int i = 0; i <= body.y; i++)
 	{
 		goToCoordinates(this->position.x, this->position.y + i);
-		for (int j = 0; j < body.x; j++)
+		for (int j = 0; j <= body.x; j++)
 		{
 			cout << ' ';
 		}

@@ -27,5 +27,4 @@ public:
 
 	Bullet* GetBullets(int index);
 	Vector2 GetBody();
-	Vector2 GetPosition();
 };

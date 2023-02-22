@@ -52,7 +52,7 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	player = new Player({ 7,5 }, { 4, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
+	player = new Player({ 6,4 }, { 4, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
 	/*for (int i = 0; i < GameConfigs::maxAsteroids; i++)
@@ -71,7 +71,7 @@ void RunGame::SpawnInitialAsteroids()
 {
 	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
 	{
-		entities.push_back(new Asteroid({ 1,1 }, { 0,0 }, { -1,0 }, { 1,1 }, Color::GREEN, 3, 1));
+		entities.push_back(new Asteroid({ 1,1 }, { 0,0 }, { -1,0 }, { 1,1 }, Color::GREEN, 1, 1));
 		entities[i]->SetAlive(false);
 	}
 }
@@ -176,9 +176,10 @@ void RunGame::CheckCollisions()
 			//player asteroid
 			if (player->CheckCollision(entities[i]))
 			{
-				entities[i]->RecieveDamage(entities[i]->GetDamage());
+				entities[i]->RecieveDamage(player->GetDamage());
+				entities[i]->SetAlive(false);
 				entities[i]->Erase();
-				SpawnAsteroid();
+				//SpawnAsteroid();
 				player->RecieveDamage(entities[i]->GetDamage());
 			}
 
@@ -191,13 +192,13 @@ void RunGame::CheckCollisions()
 					{
 						entities[i]->Erase();
 						entities[i]->RecieveDamage(player->GetBullets(j)->GetDamage());
-						SpawnAsteroid();
+						//SpawnAsteroid();
+						player->GetBullets(j)->Erase();
 						player->GetBullets(j)->RecieveDamage(entities[i]->GetDamage());
 					}
 				}
 			}
 		}
-		
 	}
 }
 
@@ -207,14 +208,14 @@ void RunGame::CheckOutOfBounds()
 	{
 		if (player->GetBullets(i)->GetPosition().x >= GameConfigs::screenWidth)
 		{
-			player->GetBullets(i)->SetAlive(false);
 			player->GetBullets(i)->Erase();
+			player->GetBullets(i)->SetAlive(false);
 		}
 	}
 
 	for (int i = 0; i < entities.size(); i++)
 	{
-		if (entities[i]->GetPosition().x < 0)
+		if (entities[i]->GetPosition().x < 0 || entities[i]->GetPosition().x >= GameConfigs::screenWidth)
 		{
 			entities[i]->Erase();
 			entities[i]->SetAlive(false);
@@ -239,10 +240,12 @@ void RunGame::DrawEntities()
 
 void RunGame::EndGame()
 {
+	system("CLS");
+
 	delete this->player;
 
 	for (int i = 0; i < entities.size(); i++)
 	{
-		delete entities[i];
+		delete this->entities[i];
 	}
 }
