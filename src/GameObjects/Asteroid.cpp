@@ -2,12 +2,13 @@
 
 Asteroid::Asteroid(Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, color, health, damage)
 {
+	asteroidCount++;
 	cout << "Created asteroid object" << endl;
 }
 
 Asteroid::~Asteroid()
 {
-	cout << "Destroyed asteroid object" << endl;
+
 }
 
 bool Asteroid::CheckCollision(BaseEntity* entity)
@@ -41,4 +42,9 @@ void Asteroid::Erase()
 {
 	goToCoordinates(this->position.x, this->position.y);
 	cout << " ";
+}
+
+int Asteroid::GetAsteroidCount()
+{
+	return asteroidCount;
 }

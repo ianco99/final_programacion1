@@ -2,6 +2,7 @@
 
 #include "AwesomeLibrary.h"
 
+int Asteroid::asteroidCount = 0;
 
 static auto curT = std::chrono::system_clock::now();
 static auto preT = std::chrono::system_clock::now();

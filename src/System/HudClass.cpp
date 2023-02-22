@@ -23,6 +23,8 @@ void HudClass::DisplayGameStats()
 	setForegroundColor(Color::WHITE);
 	goToCoordinates(105, 6);
 	cout << player->GetScore();
+	goToCoordinates(105, 8);
+	cout << Asteroid::GetAsteroidCount();
 }
 
 void HudClass::DrawBorder()
