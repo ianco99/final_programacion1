@@ -1,5 +1,7 @@
 #include "Asteroid.h"
 
+int Asteroid::asteroidCount = 0;
+
 Asteroid::Asteroid(Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, color, health, damage)
 {
 	asteroidCount++;
@@ -8,7 +10,7 @@ Asteroid::Asteroid(Vector2 body, Vector2 startPosition, Vector2 direction, Color
 
 Asteroid::~Asteroid()
 {
-
+	cout << "Destroyed asteroid object" << endl;
 }
 
 bool Asteroid::CheckCollision(BaseEntity* entity)
