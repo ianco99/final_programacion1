@@ -42,8 +42,10 @@ bool Bullet::CheckCollision(BaseEntity* entity)
 
 void Bullet::Draw()
 {
+	setForegroundColor(color);
 	goToCoordinates(position.x, position.y);
 	cout << '>';
+	setForegroundColor(Color::WHITE);
 }
 
 void Bullet::Erase()

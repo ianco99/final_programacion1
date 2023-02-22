@@ -1,22 +1,20 @@
 #pragma once
-#include "RunGame.h"
+#include "GameObjects/Player.h"
+#include "AwesomeLibrary.h"
+
+#include "Utilities.h"
 
 class HudClass
 {
 private:
-	//Player* player;
 
-	//static Vector2 gameDimensions;
+	Player* player;
 
 public:
-	HudClass();
+	HudClass(Player* player);
 	~HudClass();
 
-	//static Vector2 GetGameDimensions();
-	/*void AssignPlayer(Player* player);
-	void ShowHealth();
-	void ShowScore();
-	void ShowAsteroids();*/
+	void DisplayGameStats();
 
 	void DrawBorder();
 };

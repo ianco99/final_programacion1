@@ -23,7 +23,9 @@ public:
 
 	void Draw() override;
 	void Erase() override;
+
 	int GetScore();
+	void AddScore(int adder);
 
 	Bullet* GetBullets(int index);
 	Vector2 GetBody();

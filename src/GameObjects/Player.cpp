@@ -19,9 +19,9 @@ Player::~Player()
 
 void Player::InitBullets()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < GameConfigs::maxBullets; i++)
 	{
-		this->bullets[i] = new Bullet(false, { 3,1 }, this->position, { 0,-1 }, { 1,1 }, Color::WHITE, 1, 1);
+		this->bullets[i] = new Bullet(false, { 3,1 }, this->position, { 0,-1 }, { 1,1 }, Color::YELLOW, 1, 1);
 		bullets[i]->SetAlive(false);
 		cout << "Created bullet object" << endl;
 	}
@@ -87,8 +87,8 @@ bool Player::CheckCollision(BaseEntity* entity)
 void Player::Draw()
 {
 
+	setForegroundColor(color);
 	//Left wings
-
 	goToCoordinates(this->position.x, this->position.y);
 	cout << (char)205 << (char)205 << (char)187;
 	goToCoordinates(this->position.x + 2, this->position.y + 1);
@@ -97,7 +97,6 @@ void Player::Draw()
 	//Center ship
 	goToCoordinates(this->position.x + 1, this->position.y + 2);
 	cout << "[" << (char)204 << "]" << (char)205 << (char)205 << (char)16;
-
 
 	//Right wings
 	goToCoordinates(this->position.x + 2, this->position.y + 3);
@@ -113,6 +112,8 @@ void Player::Draw()
 			bullets[i]->Draw();
 		}
 	}
+
+	setForegroundColor(Color::WHITE);
 }
 
 void Player::Erase()
@@ -145,7 +146,12 @@ void Player::Erase()
 
 int Player::GetScore()
 {
-	return 0;
+	return score;
+}
+
+void Player::AddScore(int adder)
+{
+	score += adder;
 }
 
 Bullet* Player::GetBullets(int index)
