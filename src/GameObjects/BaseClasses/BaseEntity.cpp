@@ -35,6 +35,9 @@ void BaseEntity::Move()
 void BaseEntity::RecieveDamage(int damage)
 {
 	this->health -= damage;
+
+	if (health <= 0)
+		this->SetAlive(false);
 }
 
 int BaseEntity::GetHealth()
@@ -47,10 +50,16 @@ int BaseEntity::GetDamage()
 	return this->damage;
 }
 
+void BaseEntity::SetAlive(bool value)
+{
+	alive = value;
+}
+
 bool BaseEntity::GetAlive()
 {
 	return this->alive;
 }
+
 
 Vector2 BaseEntity::GetPosition()
 {

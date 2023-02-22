@@ -29,6 +29,8 @@ public:
 
 	int GetHealth();
 	int GetDamage();
+
+	void SetAlive(bool value);
 	bool GetAlive();
 	Vector2 GetPosition();
 };

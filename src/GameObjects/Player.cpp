@@ -34,11 +34,13 @@ void Player::ShootBullet()
 			if (counter == 0)
 			{
 				bullets[i]->StartBullet({ position.x + body.x / 2,position.y +1}, { 1,0 });
+				bullets[i]->SetAlive(true);
 				counter++;
 			}
 			else if (counter == 1)
 			{
 				bullets[i]->StartBullet({ position.x + body.x / 2,position.y -1}, { 1,0 });
+				bullets[i]->SetAlive(true);
 				counter++;
 			}
 		}
