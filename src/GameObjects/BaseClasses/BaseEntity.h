@@ -13,6 +13,8 @@ protected:
 
 	Color color;
 
+	bool alive;
+
 	int health;
 	int damage;		//Damage dealt to other body on collision
 
@@ -27,5 +29,6 @@ public:
 
 	int GetHealth();
 	int GetDamage();
+	bool GetAlive();
 	Vector2 GetPosition();
 };

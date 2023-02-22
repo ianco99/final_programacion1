@@ -132,6 +132,12 @@ void RunGame::CheckInput()
 void RunGame::MoveEntities()
 {
 	player->Move();
+
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->GetAlive())
+			entities[i]->Draw();
+	}
 }
 
 void RunGame::CheckCollisions()

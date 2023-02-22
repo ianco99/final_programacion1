@@ -3,6 +3,8 @@
 
 BaseEntity::BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity,Color color, int health, int damage)
 {
+	alive = false;
+
 	this->body = body;
 
 	this->position = startPosition;
@@ -43,6 +45,11 @@ int BaseEntity::GetHealth()
 int BaseEntity::GetDamage()
 {
 	return this->damage;
+}
+
+bool BaseEntity::GetAlive()
+{
+	return this->alive;
 }
 
 Vector2 BaseEntity::GetPosition()
