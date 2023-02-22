@@ -17,6 +17,7 @@ void Player::InitBullets()
 	for (int i = 0; i < 10; i++)
 	{
 		this->bullets[i] = new Bullet(false, { 1,1 }, this->position, { 0,-1 }, { 0,1 }, Color::WHITE, 1, 1);
+		bullets[i]->SetAlive(false);
 		cout << "Created bullet object" << endl;
 	}
 }

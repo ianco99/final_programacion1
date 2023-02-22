@@ -12,6 +12,8 @@ public:
 
 	bool CheckCollision(BaseEntity* entity) override;
 
+	void Move() override;
+
 	void Draw() override;
 	void Erase() override;
 };

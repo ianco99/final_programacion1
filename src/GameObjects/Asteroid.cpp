@@ -19,6 +19,15 @@ bool Asteroid::CheckCollision(BaseEntity* entity)
 
 }
 
+void Asteroid::Move()
+{
+	this->position.x += this->direction.x;
+	this->position.y += this->direction.y;
+
+	goToCoordinates(this->position.x+1, this->position.y);
+	cout << " ";
+}
+
 void Asteroid::Draw()
 {
 	goToCoordinates(this->position.x, this->position.y);

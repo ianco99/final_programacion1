@@ -24,7 +24,8 @@ BaseEntity::~BaseEntity()
 
 void BaseEntity::Move()
 {
-
+	this->position.x += this->direction.x;
+	this->position.y += this->direction.y;
 }
 
 //void BaseEntity::CheckCollision(BaseEntity entity)

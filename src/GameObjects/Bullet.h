@@ -12,7 +12,7 @@ public:
 	
 	void StartBullet(Vector2 bulletPos, Vector2 bulletDir);
 
-	void Move();
+	void Move() override;
 
 	bool CheckCollision(BaseEntity* entity) override;
 

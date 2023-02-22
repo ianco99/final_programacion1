@@ -17,7 +17,7 @@ public:
 	void ShootBullet();
 
 	void ChangeDirection(Vector2 newDirection);
-	void Move();
+	void Move() override;
 
 	bool CheckCollision(BaseEntity* entity) override;
 

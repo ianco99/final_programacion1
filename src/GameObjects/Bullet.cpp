@@ -20,11 +20,11 @@ void Bullet::StartBullet(Vector2 bulletPos, Vector2 bulletDir)
 
 void Bullet::Move()
 {
-	goToCoordinates(position.x, position.y);
-	cout << ' ';
 
 	this->position.x += this->direction.x;
 	this->position.y += this->direction.y;
+
+	Erase();
 }
 
 bool Bullet::CheckCollision(BaseEntity* entity)
@@ -32,7 +32,6 @@ bool Bullet::CheckCollision(BaseEntity* entity)
 	if (entity->GetPosition().x == this->position.x)
 		if (entity->GetPosition().y == this->position.y)
 		{
-			cout << "irinishe";
 			return true;
 		}
 	

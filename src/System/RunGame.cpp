@@ -71,7 +71,8 @@ void RunGame::SpawnInitialAsteroids()
 		float initY = rand() % GameConfigs::screenHeight + 1;
 
 
-		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth - initX, initY }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1));
+		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth - initX, initY }, { -1,0 }, { 1,1 }, Color::GREEN, 3, 1));
+		entities.back()->SetAlive(true);
 		spawnedAsteroids++;
 	}
 }
@@ -136,7 +137,7 @@ void RunGame::MoveEntities()
 	for (int i = 0; i < entities.size(); i++)
 	{
 		if (entities[i]->GetAlive())
-			entities[i]->Draw();
+			entities[i]->Move();
 	}
 }
 
@@ -146,16 +147,11 @@ void RunGame::CheckCollisions()
 	{
 		for (int j = 0; j < GameConfigs::maxBullets; j++)
 		{
-			if (i != j)
+			if (entities[i]->CheckCollision(player->GetBullets(j)))
 			{
-				if (entities[i]->CheckCollision(player->GetBullets(j)))
-				{
-					entities[i]->RecieveDamage(entities[j]->GetDamage());
-					entities[j]->RecieveDamage(entities[i]->GetDamage());
-				}
-
+				entities[i]->RecieveDamage(entities[j]->GetDamage());
+				entities[j]->RecieveDamage(entities[i]->GetDamage());
 			}
-
 		}
 	}
 }
@@ -166,7 +162,8 @@ void RunGame::DrawEntities()
 
 	for (int i = 0; i < entities.size(); i++)
 	{
-		this->entities[i]->Draw();
+		if (entities[i]->GetAlive())
+			this->entities[i]->Draw();
 	}
 }
 
