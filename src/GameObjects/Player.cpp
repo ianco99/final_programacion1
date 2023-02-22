@@ -23,12 +23,24 @@ void Player::InitBullets()
 
 void Player::ShootBullet()
 {
+	int counter = 0;
 	for (int i = 0; i < 10; i++)
 	{
+		if(counter == 2)
+			break;
+
 		if (!bullets[i]->GetAlive())
 		{
-			bullets[i]->StartBullet({ position.x + body.x / 2,position.y}, { 0,-1 });
-			break;
+			if (counter == 0)
+			{
+				bullets[i]->StartBullet({ position.x + body.x / 2,position.y +1}, { 1,0 });
+				counter++;
+			}
+			else if (counter == 1)
+			{
+				bullets[i]->StartBullet({ position.x + body.x / 2,position.y -1}, { 1,0 });
+				counter++;
+			}
 		}
 	}
 }
