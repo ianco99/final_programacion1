@@ -48,6 +48,7 @@ public:
 	void CheckInput();
 	void MoveEntities();
 	void CheckCollisions();
+	void CheckOutOfBounds();
 	void DrawEntities();
 
 	void EndGame();

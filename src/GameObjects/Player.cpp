@@ -27,20 +27,20 @@ void Player::ShootBullet()
 	int counter = 0;
 	for (int i = 0; i < 10; i++)
 	{
-		if(counter == 2)
+		if (counter == 2)
 			break;
 
 		if (!bullets[i]->GetAlive())
 		{
 			if (counter == 0)
 			{
-				bullets[i]->StartBullet({ position.x + body.x / 2,position.y +1}, { 1,0 });
+				bullets[i]->StartBullet({ position.x + body.x / 2,position.y + 1 }, { 1,0 });
 				bullets[i]->SetAlive(true);
 				counter++;
 			}
 			else if (counter == 1)
 			{
-				bullets[i]->StartBullet({ position.x + body.x / 2,position.y -1}, { 1,0 });
+				bullets[i]->StartBullet({ position.x + body.x / 2,position.y + 3 }, { 1,0 });
 				bullets[i]->SetAlive(true);
 				counter++;
 			}
@@ -67,6 +67,9 @@ void Player::Move()
 
 bool Player::CheckCollision(BaseEntity* entity)
 {
+	//if(entity->GetPosition().x >= this->body.x &&
+	//	entity->GetPosition().x <= this->body.x)
+
 	if (entity->GetPosition().x == this->position.x)
 		if (entity->GetPosition().y == this->position.y)
 			return true;
@@ -76,26 +79,30 @@ bool Player::CheckCollision(BaseEntity* entity)
 
 void Player::Draw()
 {
-	//Center ship
-	goToCoordinates(this->position.x-1, this->position.y);
-	cout << "[" << (char)204 << "]" << (char)205 << (char)205 << (char)16;
 
 	//Left wings
-	goToCoordinates(this->position.x, this->position.y - 1);
-	cout << (char)254 << (char)175;
-	goToCoordinates(this->position.x-2, this->position.y - 2);
+
+	goToCoordinates(this->position.x, this->position.y);
 	cout << (char)205 << (char)205 << (char)187;
+	goToCoordinates(this->position.x + 2, this->position.y + 1);
+	cout << (char)254 << (char)175;
+
+	//Center ship
+	goToCoordinates(this->position.x + 1, this->position.y + 2);
+	cout << "[" << (char)204 << "]" << (char)205 << (char)205 << (char)16;
+
 
 	//Right wings
-	goToCoordinates(this->position.x, this->position.y + 1);
+	goToCoordinates(this->position.x + 2, this->position.y + 3);
 	cout << (char)254 << (char)175;
-	goToCoordinates(this->position.x - 2, this->position.y + 2);
+	goToCoordinates(this->position.x, this->position.y + 4);
 	cout << (char)205 << (char)205 << (char)188;
 
 	for (int i = 0; i < GameConfigs::maxBullets; i++)
 	{
 		if (bullets[i]->GetAlive())
 		{
+			bullets[i]->Erase();
 			bullets[i]->Draw();
 		}
 	}
@@ -103,6 +110,15 @@ void Player::Draw()
 
 void Player::Erase()
 {
+	for (int i = 0; i < body.y; i++)
+	{
+		goToCoordinates(this->position.x, this->position.y + i);
+		for (int j = 0; j < body.x; j++)
+		{
+			cout << ' ';
+		}
+	}
+
 	//Center ship
 	goToCoordinates(this->position.x - 1, this->position.y);
 	cout << " " << ' ' << " " << ' ' << ' ' << ' ';

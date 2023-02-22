@@ -46,7 +46,7 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	player = new Player({ 5,5 }, { 4, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
+	player = new Player({ 7,5 }, { 4, GameConfigs::screenHeight - GameConfigs::screenHeight / 8 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
 	/*for (int i = 0; i < GameConfigs::maxAsteroids; i++)
@@ -92,6 +92,7 @@ void RunGame::Update()
 	CheckInput();
 	MoveEntities();
 	CheckCollisions();
+	CheckOutOfBounds();
 	DrawEntities();
 }
 
@@ -145,14 +146,30 @@ void RunGame::CheckCollisions()
 {
 	for (int i = 0; i < entities.size(); i++)
 	{
-		for (int j = 0; j < GameConfigs::maxBullets; j++)
+		if (entities[i]->GetAlive())
 		{
-			if (entities[i]->CheckCollision(player->GetBullets(j)))
+			for (int j = 0; j < GameConfigs::maxBullets; j++)
 			{
-				entities[i]->RecieveDamage(entities[j]->GetDamage());
-				entities[j]->RecieveDamage(entities[i]->GetDamage());
+				if (player->GetBullets(j)->GetAlive())
+				{
+					if (entities[i]->CheckCollision(player->GetBullets(j)))
+					{
+						entities[i]->RecieveDamage(entities[j]->GetDamage());
+						entities[j]->RecieveDamage(entities[i]->GetDamage());
+					}
+				}
 			}
 		}
+		
+	}
+}
+
+void RunGame::CheckOutOfBounds()
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->GetPosition().x < 0 || entities[i]->GetPosition().x >= GameConfigs::screenWidth)
+			entities[i]->SetAlive(false);
 	}
 }
 
@@ -163,7 +180,10 @@ void RunGame::DrawEntities()
 	for (int i = 0; i < entities.size(); i++)
 	{
 		if (entities[i]->GetAlive())
+		{
+			this->entities[i]->Erase();
 			this->entities[i]->Draw();
+		}
 	}
 }
 

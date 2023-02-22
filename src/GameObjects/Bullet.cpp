@@ -23,8 +23,6 @@ void Bullet::Move()
 
 	this->position.x += this->direction.x;
 	this->position.y += this->direction.y;
-
-	Erase();
 }
 
 bool Bullet::CheckCollision(BaseEntity* entity)
@@ -47,7 +45,7 @@ void Bullet::Draw()
 
 void Bullet::Erase()
 {
-	goToCoordinates(position.x, position.y);
+	goToCoordinates(position.x-1, position.y);
 	cout << ' ';
 }
 
