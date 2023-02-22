@@ -35,6 +35,12 @@ void RunGame::Start()
 
 		Init();
 
+		SpawnAsteroid();
+		SpawnAsteroid();
+		SpawnAsteroid();
+		SpawnAsteroid();
+		SpawnAsteroid();
+
 		while (currentState == GameStates::Playing)
 		{
 			Update();
@@ -63,18 +69,28 @@ void RunGame::Init()
 
 void RunGame::SpawnInitialAsteroids()
 {
-	int spawnedAsteroids = 0;
-
-	for (int i = 0; i < GameConfigs::startingAsteroids; i++)
+	for (int i = 0; i < GameConfigs::maxAsteroids; i++)
 	{
-		float initX = rand() % 5;
-		float initY = rand() % GameConfigs::screenHeight + 1;
-
-
-		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth - initX, initY }, { -1,0 }, { 1,1 }, Color::GREEN, 3, 1));
-		entities.back()->SetAlive(true);
-		spawnedAsteroids++;
+		entities.push_back(new Asteroid({ 1,1 }, { 0,0 }, { -1,0 }, { 1,1 }, Color::GREEN, 3, 1));
+		entities[i]->SetAlive(false);
 	}
+}
+
+void RunGame::SpawnAsteroid()
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (!entities[i]->GetAlive())
+		{
+			int initX = rand() % 5;
+			int initY = rand() % GameConfigs::screenHeight + 1;
+
+			entities[i]->SetPosition(GameConfigs::screenWidth - initX, initY);
+			entities[i]->SetAlive(true);
+			break;
+		}
+	}
+
 }
 
 void RunGame::Update()
@@ -83,17 +99,26 @@ void RunGame::Update()
 	dT = curT - preT;
 	_deltaTime = dT.count();
 
-	if (_deltaTime < 1.0 / 30)
+	if (_deltaTime < 1.0 / 24)
 	{
 		return;
 	}
 	preT = curT;
 
+	CheckGameState();
 	CheckInput();
 	MoveEntities();
 	CheckCollisions();
 	CheckOutOfBounds();
 	DrawEntities();
+}
+
+void RunGame::CheckGameState()
+{
+	if (player->GetHealth() <= 0)
+	{
+		currentState = GameStates::Lost;
+	}
 }
 
 void RunGame::CheckInput()
@@ -148,14 +173,26 @@ void RunGame::CheckCollisions()
 	{
 		if (entities[i]->GetAlive())
 		{
+			//player asteroid
+			if (player->CheckCollision(entities[i]))
+			{
+				entities[i]->RecieveDamage(entities[i]->GetDamage());
+				entities[i]->Erase();
+				SpawnAsteroid();
+				player->RecieveDamage(entities[i]->GetDamage());
+			}
+
+			//bullet asteroid
 			for (int j = 0; j < GameConfigs::maxBullets; j++)
 			{
 				if (player->GetBullets(j)->GetAlive())
 				{
-					if (entities[i]->CheckCollision(player->GetBullets(j)))
+					if (player->GetBullets(j)->CheckCollision(entities[i]))
 					{
-						entities[i]->RecieveDamage(entities[j]->GetDamage());
-						entities[j]->RecieveDamage(entities[i]->GetDamage());
+						entities[i]->Erase();
+						entities[i]->RecieveDamage(player->GetBullets(j)->GetDamage());
+						SpawnAsteroid();
+						player->GetBullets(j)->RecieveDamage(entities[i]->GetDamage());
 					}
 				}
 			}
@@ -166,10 +203,23 @@ void RunGame::CheckCollisions()
 
 void RunGame::CheckOutOfBounds()
 {
+	for (int i = 0; i < GameConfigs::maxBullets; i++)
+	{
+		if (player->GetBullets(i)->GetPosition().x >= GameConfigs::screenWidth)
+		{
+			player->GetBullets(i)->SetAlive(false);
+			player->GetBullets(i)->Erase();
+		}
+	}
+
 	for (int i = 0; i < entities.size(); i++)
 	{
-		if (entities[i]->GetPosition().x < 0 || entities[i]->GetPosition().x >= GameConfigs::screenWidth)
+		if (entities[i]->GetPosition().x < 0)
+		{
+			entities[i]->Erase();
 			entities[i]->SetAlive(false);
+			SpawnAsteroid();
+		}
 	}
 }
 
@@ -190,9 +240,9 @@ void RunGame::DrawEntities()
 void RunGame::EndGame()
 {
 	delete this->player;
+
 	for (int i = 0; i < entities.size(); i++)
 	{
 		delete entities[i];
 	}
-	entities.clear();
 }

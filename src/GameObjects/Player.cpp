@@ -10,6 +10,11 @@ Player::Player(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 v
 Player::~Player()
 {
 	cout << "Destroyed player object" << endl;
+
+	for (int i = 0; i < GameConfigs::maxBullets; i++)
+	{
+		delete bullets[i];
+	}
 }
 
 void Player::InitBullets()
@@ -25,7 +30,7 @@ void Player::InitBullets()
 void Player::ShootBullet()
 {
 	int counter = 0;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < GameConfigs::maxBullets; i++)
 	{
 		if (counter == 2)
 			break;
@@ -67,12 +72,14 @@ void Player::Move()
 
 bool Player::CheckCollision(BaseEntity* entity)
 {
-	//if(entity->GetPosition().x >= this->body.x &&
-	//	entity->GetPosition().x <= this->body.x)
+	if (entity->GetPosition().x >= this->position.x &&
+		entity->GetPosition().x <= this->position.x + this->body.x &&
+		entity->GetPosition().y >= this->position.y &&
+		entity->GetPosition().y <= this->position.y + this->body.y)
+	{
+		return true;
+	}
 
-	if (entity->GetPosition().x == this->position.x)
-		if (entity->GetPosition().y == this->position.y)
-			return true;
 	return false;
 
 }

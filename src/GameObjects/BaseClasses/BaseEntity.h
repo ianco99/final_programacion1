@@ -32,5 +32,6 @@ public:
 
 	void SetAlive(bool value);
 	bool GetAlive();
+	void SetPosition(int x, int y);
 	Vector2 GetPosition();
 };

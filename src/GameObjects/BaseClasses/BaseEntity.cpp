@@ -61,6 +61,11 @@ bool BaseEntity::GetAlive()
 	return this->alive;
 }
 
+void BaseEntity::SetPosition(int x, int y)
+{
+	position.x = x;
+	position.y = y;
+}
 
 Vector2 BaseEntity::GetPosition()
 {

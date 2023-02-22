@@ -27,12 +27,15 @@ void Bullet::Move()
 
 bool Bullet::CheckCollision(BaseEntity* entity)
 {
-	if (entity->GetPosition().x == this->position.x)
-		if (entity->GetPosition().y == this->position.y)
-		{
-			return true;
-		}
-	
+	if (entity->GetPosition().x >= this->position.x &&
+		entity->GetPosition().x <= this->position.x + this->body.x &&
+		entity->GetPosition().y >= this->position.y &&
+		entity->GetPosition().y <= this->position.y + this->body.y)
+	{
+		return true;
+	}
+
+
 	return false;
 
 }
@@ -45,7 +48,7 @@ void Bullet::Draw()
 
 void Bullet::Erase()
 {
-	goToCoordinates(position.x-1, position.y);
+	goToCoordinates(position.x - 1, position.y);
 	cout << ' ';
 }
 

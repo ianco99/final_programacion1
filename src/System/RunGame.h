@@ -43,8 +43,11 @@ public:
 	void Start();
 	void Init();
 	void SpawnInitialAsteroids();
+	void SpawnAsteroid();
 
 	void Update();
+
+	void CheckGameState();
 	void CheckInput();
 	void MoveEntities();
 	void CheckCollisions();
