@@ -52,15 +52,12 @@ void RunGame::Start()
 
 void RunGame::Init()
 {
-	player = new Player({ 6,4 }, { 4, GameConfigs::screenHeight / 2 }, { 1,1 }, { 1,1 }, Color::GREEN, 3, 1);
+	player = new Player({ 6,4 }, { 4, GameConfigs::screenHeight / 2 }, { 1,1 }, Color::GREEN, 3, 1);
 	player->InitBullets();
 
 	hudClass = new HudClass(player);
-	/*for (int i = 0; i < GameConfigs::maxAsteroids; i++)
-	{*/
-	SpawnInitialAsteroids();
 
-	//}
+	SpawnInitialAsteroids();
 
 	cout << '\n' << "Press anything to continue" << endl;
 
@@ -73,7 +70,7 @@ void RunGame::SpawnInitialAsteroids()
 {
 	for (int i = 0; i < GameConfigs::startingAsteroids; i++)
 	{
-		entities.push_back(new Asteroid({ 1,1 }, { 0,0 }, { -1,0 }, { 1,1 }, Color::GREEN, 1, 1));
+		entities.push_back(new Asteroid({ 1,1 }, { 0,0 }, { -1,0 }, Color::GREEN, 1, 1));
 		entities[i]->SetAlive(false);
 	}
 }
@@ -191,7 +188,6 @@ void RunGame::CheckCollisions()
 				player->RecieveDamage(entities[i]->GetDamage());
 				goToCoordinates(105, 4);
 				cout << "   ";
-				//SpawnAsteroid();
 			}
 
 			//bullet asteroid
@@ -207,7 +203,6 @@ void RunGame::CheckCollisions()
 						player->GetBullets(j)->Erase();
 						player->GetBullets(j)->RecieveDamage(entities[i]->GetDamage());
 						player->AddScore(100);
-						//SpawnAsteroid();
 					}
 				}
 			}

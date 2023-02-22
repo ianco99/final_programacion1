@@ -4,7 +4,6 @@ HudClass::HudClass(Player* player)
 {
 	cout << "Created Hud Class object" << endl;
 	this->player = player;
-	//gameDimensions = { 20, 100 };
 }
 
 HudClass::~HudClass()
@@ -30,8 +29,3 @@ void HudClass::DrawBorder()
 {
 	drawFrame(1, 1, GameConfigs::screenWidth, GameConfigs::screenHeight);
 }
-
-//Vector2 HudClass::GetGameDimensions()
-//{
-//	//return gameDimensions;
-//}

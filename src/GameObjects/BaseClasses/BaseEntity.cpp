@@ -1,7 +1,7 @@
 #include "BaseEntity.h"
 #include "AwesomeLibrary.h"
 
-BaseEntity::BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity,Color color, int health, int damage)
+BaseEntity::BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage)
 {
 	alive = false;
 
@@ -9,7 +9,6 @@ BaseEntity::BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction, V
 
 	this->position = startPosition;
 	this->direction = direction;
-	this->velocity = velocity;
 
 	this->color = color;
 
@@ -27,11 +26,6 @@ void BaseEntity::Move()
 	this->position.x += this->direction.x;
 	this->position.y += this->direction.y;
 }
-
-//void BaseEntity::CheckCollision(BaseEntity entity)
-//{
-//
-//}
 
 void BaseEntity::RecieveDamage(int damage)
 {

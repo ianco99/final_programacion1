@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(bool alive, Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, velocity, color, health, damage)
+Bullet::Bullet(bool alive, Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, color, health, damage)
 {
 	this->alive = alive;
 	cout << "Created bullet object" << endl;

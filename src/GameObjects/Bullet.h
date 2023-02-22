@@ -5,7 +5,7 @@ class Bullet : public BaseEntity
 {
 
 public:
-	Bullet(bool alive, Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage);
+	Bullet(bool alive, Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage);
 	~Bullet();
 	
 	void StartBullet(Vector2 bulletPos, Vector2 bulletDir);

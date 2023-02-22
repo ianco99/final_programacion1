@@ -24,8 +24,6 @@ private:
 	vector<BaseEntity*> entities;
 	Player* player;
 	GameStates currentState;
-	//Asteroid* asteroids[20];
-	//Asteroid* asteroids[GameConfigs::maxAsteroids];
 
 
 public:

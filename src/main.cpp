@@ -2,7 +2,6 @@
 
 int main()
 {
-
 	RunGame* runGame = new RunGame;
 	
 	runGame->Start();

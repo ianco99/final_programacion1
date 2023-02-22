@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "System/RunGame.h"
 
-Player::Player(Vector2 body, Vector2 startPosition, Vector2 direction, Vector2 velocity, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, velocity, color, health, damage)
+Player::Player(Vector2 body, Vector2 startPosition, Vector2 direction, Color color, int health, int damage) : BaseEntity(body, startPosition, direction, color, health, damage)
 {
 	cout << "Created player object" << endl;
 	this->score = 0;
@@ -21,7 +21,7 @@ void Player::InitBullets()
 {
 	for (int i = 0; i < GameConfigs::maxBullets; i++)
 	{
-		this->bullets[i] = new Bullet(false, { 3,1 }, this->position, { 0,-1 }, { 1,1 }, Color::YELLOW, 1, 1);
+		this->bullets[i] = new Bullet(false, { 3,1 }, this->position, { 0,-1 }, Color::YELLOW, 1, 1);
 		bullets[i]->SetAlive(false);
 		cout << "Created bullet object" << endl;
 	}
