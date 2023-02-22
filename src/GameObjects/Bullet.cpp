@@ -43,7 +43,7 @@ bool Bullet::CheckCollision(BaseEntity* entity)
 void Bullet::Draw()
 {
 	goToCoordinates(position.x, position.y);
-	cout << '^';
+	cout << '>';
 }
 
 void Bullet::Erase()

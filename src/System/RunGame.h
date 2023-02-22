@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <chrono>
+#include <time.h>
+
 #include "GameObjects/Player.h"
 #include "GameObjects/Asteroid.h"
 
@@ -16,9 +18,10 @@ enum class GameStates
 static struct GameConfigs
 {
 public:
+	static const int startingAsteroids = 5;
 	static const int maxAsteroids = 20;
 	static const int maxBullets = 10;
-	static const int screenWidth = 60;
+	static const int screenWidth = 100;
 	static const int screenHeight = 26;
 };
 
@@ -39,6 +42,7 @@ public:
 
 	void Start();
 	void Init();
+	void SpawnInitialAsteroids();
 
 	void Update();
 	void CheckInput();

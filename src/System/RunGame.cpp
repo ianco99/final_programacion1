@@ -22,6 +22,7 @@ RunGame::~RunGame()
 void RunGame::Start()
 {
 	hideCursor();
+	srand(time(NULL));
 
 	goToCoordinates(10, 10);
 	cout << "Press space to start game" << endl;
@@ -50,13 +51,29 @@ void RunGame::Init()
 
 	/*for (int i = 0; i < GameConfigs::maxAsteroids; i++)
 	{*/
-	entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth / 2, GameConfigs::screenHeight / 8 }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1));
+	SpawnInitialAsteroids();
+
 	//}
 
 	cout << '\n' << "Press anything to continue" << endl;
 
 	_getch();
 	system("CLS");
+}
+
+void RunGame::SpawnInitialAsteroids()
+{
+	int spawnedAsteroids = 0;
+
+	for (int i = 0; i < GameConfigs::startingAsteroids; i++)
+	{
+		float initX = rand() % 5;
+		float initY = rand() % GameConfigs::screenHeight + 1;
+
+
+		entities.push_back(new Asteroid({ 1,1 }, { GameConfigs::screenWidth - initX, initY }, { 0,-1 }, { 1,1 }, Color::GREEN, 3, 1));
+		spawnedAsteroids++;
+	}
 }
 
 void RunGame::Update()
@@ -98,13 +115,16 @@ void RunGame::CheckInput()
 		this->player->Erase();
 		this->player->ChangeDirection({ 0,1 });
 		break;
+
+	case 69:
+	case 101:
+		this->player->ChangeDirection({ 0,0 });
+		this->player->ShootBullet();
+
 	default:
 		this->player->ChangeDirection({ 0,0 });
 		break;
-	case 69:
-		this->player->ChangeDirection({ 0,0 });
 
-		this->player->ShootBullet();
 		break;
 	}
 }
