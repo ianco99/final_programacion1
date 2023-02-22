@@ -35,7 +35,6 @@ bool Bullet::CheckCollision(BaseEntity* entity)
 		}
 	}
 
-
 	return false;
 
 }

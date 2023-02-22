@@ -269,6 +269,8 @@ void RunGame::EndGame()
 
 	delete this->player;
 
+	delete this->hudClass;
+
 	for (int i = 0; i < entities.size(); i++)
 	{
 		delete this->entities[i];

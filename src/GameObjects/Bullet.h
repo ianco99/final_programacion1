@@ -17,11 +17,3 @@ public:
 	void Draw() override;
 	void Erase() override;
 };
-
-//Bullet::Bullet()
-//{
-//}
-//
-//Bullet::~Bullet()
-//{
-//}

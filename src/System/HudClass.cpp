@@ -2,13 +2,14 @@
 
 HudClass::HudClass(Player* player)
 {
+	cout << "Created Hud Class object" << endl;
 	this->player = player;
 	//gameDimensions = { 20, 100 };
 }
 
 HudClass::~HudClass()
 {
-
+	cout << "Destroyed Hud Class object" << endl;
 }
 
 void HudClass::DisplayGameStats()
