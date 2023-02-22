@@ -19,7 +19,7 @@ protected:
 
 public:
 	BaseEntity(Vector2 body, Vector2 startPosition, Vector2 direction, Color color,int health, int damage);
-	~BaseEntity();
+	virtual ~BaseEntity();
 	virtual bool CheckCollision(BaseEntity* entity) = 0;
 	void RecieveDamage(int damage);
 	virtual void Move();
