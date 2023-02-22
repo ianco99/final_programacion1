@@ -99,6 +99,9 @@ void RunGame::Update()
 	dT = curT - preT;
 	_deltaTime = dT.count();
 
+	CheckCollisions();
+	CheckOutOfBounds();
+
 	if (_deltaTime < 1.0 / 24)
 	{
 		return;
@@ -108,8 +111,6 @@ void RunGame::Update()
 	CheckGameState();
 	CheckInput();
 	MoveEntities();
-	CheckCollisions();
-	CheckOutOfBounds();
 	DrawEntities();
 }
 
@@ -179,8 +180,8 @@ void RunGame::CheckCollisions()
 				entities[i]->RecieveDamage(player->GetDamage());
 				entities[i]->SetAlive(false);
 				entities[i]->Erase();
-				//SpawnAsteroid();
 				player->RecieveDamage(entities[i]->GetDamage());
+				//SpawnAsteroid();
 			}
 
 			//bullet asteroid
@@ -192,9 +193,9 @@ void RunGame::CheckCollisions()
 					{
 						entities[i]->Erase();
 						entities[i]->RecieveDamage(player->GetBullets(j)->GetDamage());
-						//SpawnAsteroid();
 						player->GetBullets(j)->Erase();
 						player->GetBullets(j)->RecieveDamage(entities[i]->GetDamage());
+						//SpawnAsteroid();
 					}
 				}
 			}
